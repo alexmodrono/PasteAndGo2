@@ -6,7 +6,7 @@ The tweak aims to add some cool features to the original one, such as:
 
 - Support for more languages such as Spanish, Dutch, German, French, Italian, Portuguese, Russian, Dutch, and more that I will be adding!
 
-- If the item copied is not a URL but just a normal word, search the work with the preferred search engine.
+- If the item copied is not a URL but just a normal word, search it with the preferred search engine.
 
 ## List of compatible browsers
  - Safari
