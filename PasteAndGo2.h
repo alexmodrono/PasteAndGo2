@@ -64,8 +64,10 @@
 @interface SBIconView : NSObject
 - (NSString*)applicationBundleIdentifier;
 - (NSString*)applicationBundleIdentifierForShortcuts;
+
+//%new
 - (bool)isInArray:(NSArray *)array item:(NSString *)item;
-- (NSURL)generateLink:(NSString *)url forApp:(NSString *)bundleID;
+- (NSURL *)generateLink:(NSString *)url forApp:(NSString *)bundleID;
 @end
 
 @interface SBUIAppIconForceTouchControllerDataProvider : NSObject

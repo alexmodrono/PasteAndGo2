@@ -11,7 +11,7 @@
 %hook SBIconView
 
 %new
--(bool) isInArray:(NSArray)array item:(NSString)item {
+-(bool) isInArray:(NSArray *)array item:(NSString *)item {
 	for (NSString * currentString in array) {
 
 		if ([currentString isEqualToString:item]) {
@@ -20,64 +20,8 @@
 		return false;
 
 	}
-}
 
-%new
--(NSURL) generateLink:(NSString *)url forApp:(NSString *)bundleID {
-
-	NSString * urlScheme;
-
-	UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard]; 
-	NSString *pbStr = [pasteBoard string];
-	NSArray * appBundleIDs = [[NSArray alloc] initWithObjects:@"com.apple.mobilesafari", @"org.mozilla.ios.Firefox", @"org.mozilla.ios.Focus", @"com.google.chrome.ios", @"com.brave.ios.browser", @"com.microsoft.msedge",nil];
-
-	switch (([[appBundleIDs objectAtIndex:1] intValue])) {
-		
-		case 2:
-			urlScheme = @"firefox://open-url?url=";
-			break;
-
-		case 3:
-			urlScheme = @"firefox-focus://open-url?url=";
-			break;
-
-		case 4:
-			url = [[[url stringByReplacingOccurrencesOfString:@"https://" withString:@""] stringByReplacingOccurrencesOfString:@"http://" withString:@""] mutableCopy];
-			urlScheme = @"googlechrome://";
-			break;
-
-		case 5:
-			urlScheme = @"brave://open-url?url=";
-			break;
-
-		case 6:
-			urlScheme = @"microsoft-edge-";
-			break;
-
-		default:
-			break;
-	}
-
-	NSURL * finalURL = [NSURL URLWithString:url];
-
-	if ([[UIApplication sharedApplication] canOpenURL:finalURL]) {
-
-		finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", urlScheme, [pbStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]];
-
-		return finalURL;
-
-	} else { //item is not an url, so we just need to search it.
-		
-		if ([bundleID isEqualToString:@"com.google.chrome.ios"]) {
-			finalURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@www.google.com/search?q=%@", urlScheme, [[pbStr stringByReplacingOccurrencesOfString:@" " withString:@"+"] mutableCopy]]]; //convert to google link
-		} else {
-			finalURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@https://www.google.com/search?q=%@", urlScheme, [[pbStr stringByReplacingOccurrencesOfString:@" " withString:@"+"] mutableCopy]]]; //convert to google link
-		}
-		
-
-		return finalURL;
-
-	}
+	return false;
 }
 
 -(NSArray *) applicationShortcutItems {
@@ -141,10 +85,54 @@
 		NSString *pbStr = [pasteBoard string];
 		
 		if (pbStr){
+
+			NSString * urlScheme;
+			NSArray * appBundleIDs = [[NSArray alloc] initWithObjects:@"com.apple.mobilesafari", @"org.mozilla.ios.Firefox", @"org.mozilla.ios.Focus", @"com.google.chrome.ios", @"com.brave.ios.browser", @"com.microsoft.msedge",nil];
+
+			switch (([[appBundleIDs objectAtIndex:1] intValue])) {
+				
+				case 2:
+					urlScheme = @"firefox://open-url?url=";
+					break;
+
+				case 3:
+					urlScheme = @"firefox-focus://open-url?url=";
+					break;
+
+				case 4:
+					pbStr = [[[pbStr stringByReplacingOccurrencesOfString:@"https://" withString:@""] stringByReplacingOccurrencesOfString:@"http://" withString:@""] mutableCopy];
+					urlScheme = @"googlechrome://";
+					break;
+
+				case 5:
+					urlScheme = @"brave://open-url?url=";
+					break;
+
+				case 6:
+					urlScheme = @"microsoft-edge-";
+					break;
+
+				default:
+					break;
+			}
+
+			NSURL * finalURL = [NSURL URLWithString:[pbStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+
+			if ([[UIApplication sharedApplication] canOpenURL:finalURL]) {
+
+				finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", urlScheme, [pbStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]];
+
+			} else { //item is not an url, so we just need to search it.
+				
+				if ([bundleID isEqualToString:@"com.google.chrome.ios"]) {
+					finalURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@www.google.com/search?q=%@", urlScheme, [[pbStr stringByReplacingOccurrencesOfString:@" " withString:@"+"] mutableCopy]]]; //convert to google link
+				} else {
+					finalURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@https://www.google.com/search?q=%@", urlScheme, [[pbStr stringByReplacingOccurrencesOfString:@" " withString:@"+"] mutableCopy]]]; //convert to google link
+				}
+
+			}
 			
-			NSURL * url = [self generateLink:pbStr]
-			
-			[[UIApplication sharedApplication] openURL:url];
+			[[UIApplication sharedApplication] openURL:finalURL];
 
 		}
 	}

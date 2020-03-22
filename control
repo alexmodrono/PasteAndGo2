@@ -1,5 +1,5 @@
 Package: com.amodrono.tweak.PasteAndGo2
-Name: PasteAndGo 2
+Name: PasteAndGo2
 Depends: mobilesubstrate
 Version: 0.0.1
 Architecture: iphoneos-arm

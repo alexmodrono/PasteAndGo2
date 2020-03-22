@@ -1,10 +1,10 @@
-Package: com.amodrono.tweak
-Name: PasteAndGo 2
+Package: com.amodrono.tweak.PasteAndGo2
+Name: PasteAndGo2
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
 Description: Paste & Search actions for force touch menu
 Maintainer: amodrono
 Author: amodrono
 Section: Tweaks
-Version: 0.0.1-20+debug
-Installed-Size: 328
+Version: 0.0.1-3+debug
+Installed-Size: 184
