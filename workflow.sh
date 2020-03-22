@@ -1,7 +1,7 @@
 if [ -f Tweak.x ]; then
   echo "Compiling theos tweak".
   echo "Performing checks."
-  if [-f Makefile]
+  if [ -f Makefile ]; then
     make package
     make do
   fi
