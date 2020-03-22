@@ -24,6 +24,4 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Compile theos package
-      run: if [ ! -f /Tweak.x ]; then,
-          echo "File not found!",
-          fi
+      run: ./workflow.sh
