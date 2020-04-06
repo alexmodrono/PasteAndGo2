@@ -66,11 +66,19 @@
 - (NSString*)applicationBundleIdentifierForShortcuts;
 
 //%new
+<<<<<<< HEAD
 - (bool)isBrowser:(NSString *)bundleID;
+=======
+- (bool)isInArray:(NSArray *)array item:(NSString *)item;
+>>>>>>> 7cd4bfbcd0391701f3ab645052ad4875aeb90596
 - (NSURL *)generateLink:(NSString *)url forApp:(NSString *)bundleID;
 @end
 
 @interface SBUIAppIconForceTouchControllerDataProvider : NSObject
 - (NSString*)applicationBundleIdentifier;
+<<<<<<< HEAD
 - (bool)isBrowser:(NSString *)bundleID;
+=======
+- (bool)isInArray:(NSArray *)array item:(NSString *)item;
+>>>>>>> 7cd4bfbcd0391701f3ab645052ad4875aeb90596
 @end
