@@ -14,6 +14,7 @@ It is based on [u/apieceoflint's](https://reddit.com/u/apieceoflint)'s' PasteAnd
  - Chrome
  - Edge
  - Firefox
+ - Firefox Focus
  - Brave
 
 ## Installation
