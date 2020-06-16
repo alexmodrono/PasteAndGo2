@@ -17,5 +17,3 @@ internal-stage::
 	mkdir -p "$(THEOS_STAGING_DIR)/Library/Application Support/PasteAndGo2.bundle"
 	cp -R Resources/* "$(THEOS_STAGING_DIR)/Library/Application Support/PasteAndGo2.bundle/"
 
-after-install::
-	install.exec "killall -9 SpringBoard"
