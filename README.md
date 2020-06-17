@@ -41,3 +41,5 @@ You can either open a pull-request here, or can reach me in the following social
 * **Discord**: iAlex11#6373
 * **Twitter**: [@Semiak_](https://twitter.com/Semiak_)
 * **Reddit**: [u/iAlex11](https://reddit.com/u/iAlex11)
+
+I'm also extremely thankful to [@p0358](https://github.com/p0358) for his pull request.
